@@ -1,19 +1,19 @@
 const url = "https://pure-hamlet-36202.herokuapp.com/api/donors";
 
 const checkCurrency = (currency, amount) => {
-    if (currency === "btc") return convertToBtc(amount);
-    else if (currency === "eur") return convertToEuro(amount);
+    if (currency === "btc") return convertFromBtc(amount);
+    else if (currency === "eur") return convertFromEuro(amount);
     else return amount;
 }
 
 const getProjectedDonation = (frequency, amount) => {
-    if (frequency === "yearly") return (amount * 12).toFixed(2);
+    if (frequency === "yearly") return Number.parseFloat(amount * 12).toFixed(2);
     return Number.parseFloat(amount).toFixed(2);
 }
 
-const convertToBtc = (amt) => amt / 58065.40;
+const convertFromBtc = (amt) => amt * 36751.50;
 
-const convertToEuro = (amt) => amt / 1.19;
+const convertFromEuro = (amt) => amt * 1.22;
 
 (function () {
     const donorData = JSON.parse(localStorage.getItem("donor"));
@@ -119,7 +119,6 @@ const handleSubmit = async (e) => {
 
 const confirmDonation = () => {
     const donor = localStorage.getItem("donor")
-    console.log(donor)
     fetch(url, {
         headers: { "Content-Type": "application/json" },
         mode: "no-cors",
