@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
@@ -7,6 +8,7 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='index.css'>
 </head>
+
 <body>
     <div class="inner">
         <h2>Support Wikimedia Foundation</h2>
@@ -29,7 +31,7 @@
             </div>
             <div class="form-control">
                 <label for="country">Country:</label>
-                
+
                 <select name="country" id="country" required>
                     <option value="">Please select your country</option>
                     <option value="Afghanistan">Afghanistan</option>
@@ -232,7 +234,7 @@
             </div>
             <div class="form-control">
                 <label for="postalCode">Postal Code:</label>
-                <input type="text" id="postalCode" name="postalCode" required >
+                <input type="text" id="postalCode" name="postalCode" required>
             </div>
             <div class="form-control">
                 <label for="phone">Phone Number:</label>
@@ -244,7 +246,7 @@
             </div>
             <div class="form-control">
                 <label for="preferredFormOfContact">Preferred form of contact:</label>
-                
+
                 <select name="preferredFormOfContact" id="preferredFormOfContact" required>
                     <option value="">Please choose a preferred form of contact</option>
                     <option value="phone">Phone</option>
@@ -253,7 +255,7 @@
             </div>
             <div class="form-control">
                 <label for="preferredFormOfPayment">Preferred currency:</label>
-            
+
                 <select name="preferredFormOfPayment" id="preferredFormOfPayment" required>
                     <option value="">Please choose the preferred currency of payment</option>
                     <option value="usd">USD($)</option>
@@ -265,10 +267,10 @@
                 <label for="amount">Amount:</label>
                 <input min="1" step="0.01" type="number" id="amount" name="amount" required>
             </div>
-            
+
             <div class="form-control">
                 <label for="frequency">Frequency of Donation:</label>
-            
+
                 <select name="frequency" id="frequency" required>
                     <option value="">Please choose a preferred donation frequency</option>
                     <option value="one-time">One-time</option>
@@ -284,14 +286,17 @@
                 <button type="reset" class="secondary">Reset</button>
                 <button type="submit" class="primary">Review</button>
             </div>
-            
+
         </form>
     </div>
 </body>
 <script src='index.js'></script>
 <script>
+    localStorage.removeItem("donor");
+
     document.getElementById("donor-form").addEventListener("submit", (e) => {
-            handleSubmit(e);
-        });
+        handleSubmit(e);
+    });
 </script>
+
 </html>

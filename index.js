@@ -25,6 +25,9 @@ const convertToEuro = (amt) => amt / 1.19;
         const projectedAmountInDollars = getProjectedDonation(donorData.frequency, amount);
         if (window.location.pathname.includes("/confirmation.html")) {
             document.getElementById("confirmation-body").innerHTML = `<div class="summary">
+                         <div class="update-link">
+                            <a href="donor-form.html">Update Your Details</a>
+                        </div>
                         <div class="field">
                             <h3 class="label">First Name</h3>
                             <p class="value">${donorData.firstName}</p>
@@ -85,9 +88,6 @@ const convertToEuro = (amt) => amt / 1.19;
                             <h3 class="label">Total projected donation for a year($)</h3>
                             <p class="value">${projectedAmountInDollars}</p>
                         </div>`}
-                        <div class="update-link">
-                            <a href="donor-form.html">Update details</a>
-                        </div>
                     </div>`
         } else if (document.getElementById("donor-form")) {
             const formInputs = document.getElementById("donor-form").elements;
