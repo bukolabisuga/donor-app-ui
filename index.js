@@ -1,13 +1,13 @@
 const url = "https://pure-hamlet-36202.herokuapp.com/api/donors";
 
 const checkCurrency = (currency, amount) => {
-    if(currency === "btc") return convertToBtc(amount);
-    else if(currency === "eur") return convertToEuro(amount);
+    if (currency === "btc") return convertToBtc(amount);
+    else if (currency === "eur") return convertToEuro(amount);
     else return amount;
 }
 
 const getProjectedDonation = (frequency, amount) => {
-    if(frequency === "yearly") return (amount * 12).toFixed(2);
+    if (frequency === "yearly") return (amount * 12).toFixed(2);
     return Number.parseFloat(amount).toFixed(2);
 }
 
@@ -15,16 +15,16 @@ const convertToBtc = (amt) => amt / 58065.40;
 
 const convertToEuro = (amt) => amt / 1.19;
 
-(function() {
+(function () {
     const donorData = JSON.parse(localStorage.getItem("donor"));
     console.log(window.location.pathname)
-        if(donorData) {
-            const currency = donorData.preferredFormOfPayment;
-            const amount = checkCurrency(currency, donorData.amount);
-            const projectedAmount = getProjectedDonation(donorData.frequency, donorData.amount);
-            const projectedAmountInDollars = getProjectedDonation(donorData.frequency, amount);
-            if(window.location.pathname.includes("/confirmation.html")) {
-                document.getElementById("confirmation-body").innerHTML=`<div class="summary">
+    if (donorData) {
+        const currency = donorData.preferredFormOfPayment;
+        const amount = checkCurrency(currency, donorData.amount);
+        const projectedAmount = getProjectedDonation(donorData.frequency, donorData.amount);
+        const projectedAmountInDollars = getProjectedDonation(donorData.frequency, amount);
+        if (window.location.pathname.includes("/confirmation.html")) {
+            document.getElementById("confirmation-body").innerHTML = `<div class="summary">
                         <div class="field">
                             <h3 class="label">First Name</h3>
                             <p class="value">${donorData.firstName}</p>
@@ -89,12 +89,12 @@ const convertToEuro = (amt) => amt / 1.19;
                             <a href="donor-form.html">Update details</a>
                         </div>
                     </div>`
-            }   else if(document.getElementById("donor-form")){
-                    const formInputs = document.getElementById("donor-form").elements;
-                    for(let key in donorData) {
-                        formInputs[key].value = donorData[key];
-                    }
+        } else if (document.getElementById("donor-form")) {
+            const formInputs = document.getElementById("donor-form").elements;
+            for (let key in donorData) {
+                formInputs[key].value = donorData[key];
             }
+        }
     }
 })();
 
@@ -109,19 +109,8 @@ const handleSubmit = async (e) => {
             donor[key] = formData.get(key);
         }
 
-        //API Call
-        fetch(url, {
-            headers: {"Content-Type": "application/json"},
-            mode: "no-cors",
-            method: "POST",
-            body: JSON.stringify(donor)
-        })
-        .then(res => {
-                res.json();
-                localStorage.setItem("donor", JSON.stringify(donor));
-                window.location.replace("confirmation.html");
-            })
-        .catch(err => alert(err));
+        localStorage.setItem("donor", JSON.stringify(donor));
+        window.location.replace("confirmation.html");
     } catch (error) {
         alert(error);
         throw new Error(error);
@@ -129,8 +118,19 @@ const handleSubmit = async (e) => {
 }
 
 const confirmDonation = () => {
-    localStorage.removeItem("donor");
-    window.location.replace("donation-confirmed.html");
+    const donor = localStorage.getItem("donor")
+    console.log(donor)
+    fetch(url, {
+        headers: { "Content-Type": "application/json" },
+        mode: "no-cors",
+        method: "POST",
+        body: donor
+    })
+        .then(res => {
+            localStorage.removeItem("donor");
+            window.location.replace("donation-confirmed.html");
+        })
+        .catch(err => alert(err));
 }
 
 const cancelDonation = () => {
