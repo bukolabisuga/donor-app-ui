@@ -1,4 +1,4 @@
-const url = "http://localhost:3000/api/donors";
+const url = "https://pure-hamlet-36202.herokuapp.com/api/donors";
 
 const checkCurrency = (currency, amount) => {
     if(currency === "btc") return convertToBtc(amount);
