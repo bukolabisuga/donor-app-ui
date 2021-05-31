@@ -1,0 +1,101 @@
+body{
+    color: rgba(0, 0, 0, 0.87);
+    margin: 0;
+    font-size: 0.875rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    line-height: 1.43;
+    letter-spacing: 0.01071em;
+    background-color: #fafafa;
+}
+
+.inner {
+    margin: 5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.link-container {
+    margin-top: 2rem;
+}
+
+.align-right {
+    text-align: right;
+}
+
+.d-block {
+    display: block;
+}
+
+.donate-link, 
+.btn-group button.primary {
+    padding: 1rem 2rem;
+    color: #d40356;
+    border: #d40356;
+    background: #FDE8F0;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+#donor-form .form-control,
+.field {
+    margin-top: 1rem;
+    width: 100%;
+    display: flex;
+}
+
+#donor-form .form-control label,
+.field .label {
+    width: 50%;
+    font-weight: bold;
+}
+
+#donor-form .form-control input, 
+#donor-form .form-control select,
+#donor-form .form-control textarea,
+.field .value{
+    width: 50%;
+    border-radius: 2px;
+    padding: 0.25rem;
+}
+
+#donor-form .form-control input, 
+#donor-form .form-control select,
+#donor-form .form-control textarea{
+    border: 1px solid #eaecf0;
+}
+
+.btn-group button {
+    border: none;
+}
+
+.btn-group {
+    margin: 2rem 0;
+    text-align: right;
+}
+
+.btn-group button.secondary {
+    padding: 1rem 2rem;
+    color: #000;
+    background: #eaecf0;
+    border-radius: 4px;
+    font-weight: 600;
+    margin-right: 1rem;
+    cursor: pointer;
+}
+
+.update-link a{
+    font-weight: 600;
+    padding: 0.25rem;
+    margin-top: 1rem;
+    color: #d40356;
+    border: #d40356;
+    background: #FDE8F0;
+}
