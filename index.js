@@ -1,5 +1,4 @@
-const createDonor = "http://localhost:3000/api/donors/get";
-const getDonors = "http://localhost:3000/api/donors/save";
+const url = "http://localhost:3000/api/donors";
 
 const checkCurrency = (currency, amount) => {
     if(currency === "btc") return convertToBtc(amount);
@@ -111,7 +110,7 @@ const handleSubmit = async (e) => {
         }
 
         //API Call
-        fetch(createDonor, {
+        fetch(url, {
             headers: {"Content-Type": "application/json"},
             mode: "no-cors",
             method: "POST",
